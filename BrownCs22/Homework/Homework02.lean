@@ -73,7 +73,10 @@ Remember `ℕ = {0, 1, 2, ...}`, the natural numbers.
 
 @[autograded 3]
 theorem problem_1 : ∀ n : ℕ, ∃ x : ℕ, n < x := by
-  sorry
+  fix test
+  have h := hall x
+  linarith
+
   done
 
 
