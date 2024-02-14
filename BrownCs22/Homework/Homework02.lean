@@ -72,11 +72,10 @@ Remember `ℕ = {0, 1, 2, ...}`, the natural numbers.
 -/
 
 @[autograded 3]
-theorem problem_1 : ∀ n : ℕ, ∃ x : ℕ, n < x := by
-  fix test
-  have h := hall x
+theorem probem_1 : ∀ n : ℕ, ∃ x : ℕ, n < x := by
+  fix n
+  existsi n + 1
   linarith
-
   done
 
 
@@ -124,7 +123,8 @@ First, practice an introduction:
 
 @[autograded 1]
 theorem problem_2 : 220 ∣ 880 := by
-  sorry
+  existsi 4
+  numbers
   done
 
 /-
@@ -136,7 +136,11 @@ is also a divisor of 220.
 
 @[autograded 3]
 theorem problem_3 : ∀ x : ℕ, x ∣ 22 → x ∣ 220 := by
-  sorry
+  fix x
+  assume h1
+  eliminate h1 with y h2
+  existsi y * 10
+  linarith
   done
 
 
@@ -172,7 +176,10 @@ No need to start with `assume`.
 
 @[autograded 3]
 theorem problem_4 (a b : ℤ) (h : ∀ x : ℤ, 2*a ≤ x ∨ x ≤ 2*b) : a ≤ b := by
-  sorry
+  have h1 : 2 * a ≤ (a + b) ∨ (a + b) ≤ 2 * b := h (a+b)
+  eliminate h1 with h2 h3
+  {linarith}
+  {linarith}
   done
 
 
