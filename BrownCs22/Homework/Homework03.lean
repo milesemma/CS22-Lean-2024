@@ -60,7 +60,18 @@ Then think about the last few homeworks; how do you prove an `↔` goal?
 
 @[autograded 4]
 theorem problem_1 : (A ∪ B) ∩ B = B := by
-  sorry
+  extensionality
+  set_simplify
+  fix X
+  split_goal
+  assume hypo1
+  eliminate hypo1 with hypo2 hypo3
+  assumption
+  assume hypo1
+  split_goal
+  right
+  assumption
+  assumption
   done
 
 
@@ -108,7 +119,7 @@ example : Aᶜ ∩ Aᶜ = Aᶜ := by
   rewrite ← compl_union -- we have used de morgan's law "backward",
                         -- changing `Aᶜ ∩ Aᶜ` to `(A ∪ A)ᶜ`.
   rewrite union_self
-  reflexivity
+
   done
 
 /-
@@ -136,11 +147,10 @@ It might help to plan out your steps on paper!
 
 @[autograded 4]
 theorem problem_2 : (Aᶜ \ B)ᶜ = A ∪ B := by
-  sorry
+  rewrite diff_eq
+  rewrite compl_inter
+  rewrite compl_compl
+  rewrite compl_compl
+  reflexivity
   done
-
-
-
-
-
 end HW3
