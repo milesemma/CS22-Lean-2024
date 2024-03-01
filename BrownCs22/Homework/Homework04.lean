@@ -115,14 +115,22 @@ Some tactics to remember:
 
 @[autograded 2]
 theorem problem_1 : Injective f := by
-  sorry
+  dsimp Injective
+  dsimp f
+  fix x
+  fix y
+  assume hx
+  linarith
   done
 
 @[autograded 2]
 theorem problem_2 : Surjective f := by
-  sorry
+  dsimp Surjective
+  dsimp f
+  fix x
+  existsi(x - 6) / 2
+  linarith
   done
-
 
 /-
 
@@ -167,9 +175,12 @@ Let's show that this relation is reflexive. Like before,
 
 @[autograded 2]
 theorem problem_3 : Reflexive R := by
-  sorry
+  dsimp Reflexive
+  dsimp R
+  fix x
+  existsi 1
+  linarith
   done
-
 
 /-
 
@@ -200,8 +211,17 @@ this is the same concept showing up in a different context.)
 
 @[autograded 3]
 theorem problem_4 : Transitive R := by
-  sorry
+  dsimp Transitive
+  dsimp R
+  dsimp dvd
+  fix x
+  fix y
+  fix z
+  assume h1 h2
+  eliminate h1 with c h1
+  eliminate h2 with d h2
+  existsi c * d
+  linear_combination d * h1 + h2
   done
-
 
 end HW4
